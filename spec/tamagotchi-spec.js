@@ -88,5 +88,5 @@ describe('Tamagotchi', function() {
     pico.attentionLevel = 4;
     pico.deathCheck();
     expect(pico.health).toEqual(0);
-  })
+  });
 });

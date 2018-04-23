@@ -1,9 +1,11 @@
 class Tamagotchi {
   constructor(name) {
     this.name = name;
-    this.foodLevel = 10;
+    this.foodLevel = 15;
     this.sleepLevel = 10;
     this.attentionLevel = 10;
+    this.mess = 0;
+    this.health = 10;
   }
   setHunger() {
     setInterval(() => {
@@ -19,6 +21,13 @@ class Tamagotchi {
     setInterval(() => {
       this.attentionLevel--;
     }, 1000);
+  }
+  setMessTimer() {
+    if (this.mess === 5) {
+      setInterval(() => {
+        this.health--;
+      }, 1000);
+    }
   }
   zombieGotchi() {
     if (this.foodLevel > 0) {
@@ -41,7 +50,11 @@ class Tamagotchi {
       return true;
     }
   }
-
+  messIncrement() {
+    if (this.foodLevel > 15) {
+     return this.mess++;
+    }
+  }
   feed() {
     this.foodLevel = 10;
   }

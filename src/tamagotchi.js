@@ -64,5 +64,11 @@ class Tamagotchi {
   attention() {
     this.attentionLevel = 10;
   }
+
+  deathCheck() {
+    if(this.foodLevel === 0 || this.sleepLevel === 0 || this.attentionLevel === 0) {
+      this.health = 0;
+    }
+  }
 }
 export { Tamagotchi };

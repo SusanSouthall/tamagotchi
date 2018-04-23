@@ -8,6 +8,7 @@ describe('Tamagotchi', function() {
     pico.setHunger();
     pico.setSleep();
     pico.setAttention();
+    pico.setMessTimer();
   });
 
   afterEach(function() {
@@ -73,4 +74,19 @@ describe('Tamagotchi', function() {
     pico.messIncrement();
     expect(pico.mess).toEqual(1);
   });
+
+  it('should cause health to decrease if mess equals 5', function() {
+    pico.mess = 5;
+    pico.setMessTimer();
+    jasmine.clock().tick(9001);
+    expect(pico.health).toEqual(1);
+  });
+
+  it('should determine if tamagotchi dies when food, sleep, or attention is 0', function(){
+    pico.foodLevel = 2;
+    pico.sleepLevel = 0;
+    pico.attentionLevel = 4;
+    pico.deathCheck();
+    expect(pico.health).toEqual(0);
+  })
 });

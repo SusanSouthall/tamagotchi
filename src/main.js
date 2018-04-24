@@ -7,7 +7,7 @@ import './styles.css';
 
 $(document).ready(function() {
   $("#feed").click(function() {
-
+    $(".hamtaroImage").empty();
     $.ajax({
       url: `https://api.giphy.com/v1/stickers/search?q=hamtaro&api_key=${process.env.API_KEY}`,
       type: 'GET',
@@ -17,6 +17,23 @@ $(document).ready(function() {
       success: function(response) {
         console.log(response);
         $('.hamtaroImage').append(`<img src="${response.data[7].images.downsized.url}" alt="giphy">`);
+      },
+      error: function() {
+        $('#errors').text("There was an error processing your request. Please try again.")
+      }
+    });
+  });
+  $("#rest").click(function() {
+    $(".hamtaroImage").empty();
+    $.ajax({
+      url: `https://api.giphy.com/v1/stickers/search?q=hamtaro&api_key=${process.env.API_KEY}`,
+      type: 'GET',
+      data: {
+        format: 'json'
+      },
+      success: function(response) {
+        console.log(response);
+        $('.hamtaroImage').append(`<img src="${response.data[8].images.downsized.url}" alt="giphy">`);
       },
       error: function() {
         $('#errors').text("There was an error processing your request. Please try again.")
